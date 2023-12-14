@@ -119,3 +119,43 @@ function slett(){
     let ut ="";
     document.getElementById("allebiletter").innerHTML = ut;
 }
+
+
+
+// Sorterer bilettregisteret basert på filmI
+function sortAfterMovie() {
+    bilettregister.sort(function(a, b) {
+        var filmA = a.filmI.toUpperCase(); // gjør om til store bokstaver for å unngå case-sensitivity
+        var filmB = b.filmI.toUpperCase();
+
+        if (filmA < filmB) {
+            return -1;
+        }
+        if (filmA > filmB) {
+            return 1;
+        }
+        return 0;
+    });
+
+    // Oppdaterer tabellen med den sorterte listen
+    let ut =
+        "<table><tr>" +
+        "<th>film</th> <th>antall</th>" +
+        "<th>navn</th> <th>etternavn</th>" +
+        "<th>phone</th> <th>email</th>" +
+        "</tr>";
+
+    for (let p of bilettregister) {
+        ut +=  "<tr>";
+        ut += "<td>" +
+            p.filmI + "</td> <td>" +
+            p.antallI + "</td> <td>" +
+            p.fnameI + "</td> <td>" +
+            p.lnameI + "</td> <td>" +
+            p.phoneI + "</td> <td>" +
+            p.emailI + "</td>";
+        ut +=  "</tr>";
+    }
+    
+    document.getElementById("allebiletter").innerHTML = ut;
+}
